@@ -2,9 +2,9 @@ import { TestBed, async } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { CompaniesModule } from '../components/companies/companies.module';
+import { CompaniesModule } from './components/companies/companies.module';
 
-fdescribe('AppComponent', () => {
+describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [

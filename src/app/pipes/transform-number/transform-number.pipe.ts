@@ -5,8 +5,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class TransformNumberPipe implements PipeTransform {
 
-  transform(num: number, beforeVal = '$'): string {
-      const number = +parseFloat(num + '');
+  transform(num: number | string, beforeVal = '$'): string {
+      const number = +parseFloat(`${num}`);
       const powerOfTen = Math.floor(Math.log(Math.abs(number)) * Math.LOG10E);
 
       if (powerOfTen >= 3 && powerOfTen < 6) {
@@ -19,7 +19,7 @@ export class TransformNumberPipe implements PipeTransform {
         return `${beforeVal}${Math.round(number / Math.pow(10, 12))}T`;
       }
 
-      return`${beforeVal}${number}`;
+      return`${beforeVal}${Math.round(number)}`;
   }
 
 }

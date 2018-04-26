@@ -8,7 +8,7 @@ import {CompanyResponse} from '../interfaces';
 
 @Injectable()
 export class CompaniesService {
-  private api = 'https://api.companybooknetworking.com/search-service/4.0/search';
+  api = 'https://api.companybooknetworking.com/search-service/4.0/search';
 
   constructor(private http: HttpClient) { }
 

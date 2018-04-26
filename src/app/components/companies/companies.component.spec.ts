@@ -1,26 +1,16 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
 
 import { CompaniesComponent } from './companies.component';
 import { SortCompaniesPipe, TransformNumberPipe } from '../../pipes';
 import { CompaniesService } from '../../servises/companies.service';
 import { CompaniesTableHeader } from '../../interfaces';
 import { SortCompaniesEnum } from '../../enums';
+import { MockCompaniesService } from '../../mocks/mock-companies-servise.moc';
+import { COMPANIES } from '../../mocks/companies.mock';
 
-const COMPANIES = [1, 2, 3];
-
-class MockCompaniesService {
-  mockCompanies = [];
-
-  getCompaniesByQuery(): Observable<any> {
-    return of(this.mockCompanies);
-  }
-}
-
-fdescribe('CompaniesComponent', () => {
+describe('CompaniesComponent', () => {
   let component: CompaniesComponent;
   let fixture: ComponentFixture<CompaniesComponent>;
   let service: MockCompaniesService;
