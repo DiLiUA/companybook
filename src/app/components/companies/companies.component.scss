@@ -1,0 +1,32 @@
+:host {
+  font-size: 14px;
+}
+
+.companies-page-container {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.table-cell {
+  vertical-align: middle;
+
+  .fa {
+    color: grey;
+  }
+
+  &.active {
+    .fa {
+      color: #000;
+    }
+  }
+}
+
+.cell-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.cell-title {
+  padding-right: 5px;
+}

@@ -1,0 +1,62 @@
+<div class="companies-page-container">
+  <div class="container">
+    <form #queryForm="ngForm"
+          novalidate
+          (ngSubmit)="submitQuery(queryForm.invalid)">
+      <div class="form-row align-items-end justify-content-center form-group">
+        <div class="col-8 col-sm-5 my-1">
+          <input type="text"
+                 name="query"
+                 class="form-control"
+                 id="query-field"
+                 placeholder="please type the query parameter"
+                 [(ngModel)]="query"/>
+        </div>
+        <div class="col-auto my-1">
+          <button type="submit"
+                  class="btn btn-primary"
+                  [disabled]="queryForm.invalid || !queryForm.dirty">
+            Submit
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <div class="companies-table-container" *ngIf="!!companies.length; else emptyCompanies">
+      <table valign="top" class="table table-striped">
+        <thead>
+          <tr>
+            <th  class="table-cell" scope="col">#</th>
+            <th *ngFor="let item of companiesTableHeader"
+                (click)="sortBy(item)"
+                [class.active]="item.sortKey === sortedColumn"
+                class="table-cell">
+              <div class="cell-container">
+                <span class="cell-title">{{item.title}}</span>
+                <i class="fa"
+                   [class.fa-sort-amount-desc]="item.sortKey === sortedColumn && sortedParam === sortCompaniesEnum.SortFromZtoA"
+                   [class.fa-sort-amount-asc]="sortedParam === sortCompaniesEnum.SortFromAtoZ || item.sortKey !== sortedColumn"
+                   aria-hidden="true"></i>
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let company of companies | sortCompanies: sortColumn: sortByParam; let i = index">
+            <td  class="table-cell" scope="row">{{i + 1}}</td>
+            <td  class="table-cell">{{company.name}}</td>
+            <td  class="table-cell">{{company.country_iso }}</td>
+            <td  class="table-cell">{{company.revenue | transformNumber:'$'}}</td>
+            <td  class="table-cell">{{company.employees_count}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ng-template #emptyCompanies>
+      <div class="alert alert-info" role="alert">
+        No results were found for the <strong>{{query}}</strong>. Please try again.
+      </div>
+    </ng-template>
+  </div>
+</div>
